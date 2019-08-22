@@ -8,6 +8,8 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.SendKeys;
 
 public class BuscarVideo implements Task {
 
@@ -15,8 +17,8 @@ public class BuscarVideo implements Task {
 
   @Override
   public <T extends Actor> void performAs(T actor) {
-    CAMPO_BUSQUEDA_YOUTUBE.resolveFor(actor).waitUntilVisible().sendKeys(videoBuscado.getNombreVideo());
-    BOTON_BUSQUEDA_YOUTUBE.resolveFor(actor).waitUntilVisible().click();
+    actor.attemptsTo(SendKeys.of(videoBuscado.getNombreVideo()).into(CAMPO_BUSQUEDA_YOUTUBE));
+    actor.attemptsTo(Click.on(BOTON_BUSQUEDA_YOUTUBE));
   }
 
   public static Performable enYouTube(String video) {

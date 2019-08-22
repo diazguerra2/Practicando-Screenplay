@@ -6,12 +6,13 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Click;
 
 public class IngresarSeccion implements Task {
 
   @Override
   public <T extends Actor> void performAs(T actor) {
-    BOTON_TENDENCIAS.resolveFor(actor).waitUntilVisible().click();
+    actor.attemptsTo(Click.on(BOTON_TENDENCIAS));
   }
 
   public static Performable Tendencias() {
